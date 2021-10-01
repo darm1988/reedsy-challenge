@@ -14,9 +14,17 @@ class ItemsController < ApplicationController
 
   def checkout
     list = params[:items]&.split(',')
+    items = {}
     total = 0
 
-    if list.present?
+    if list.any?
+      list.each do |item_code|
+        item_code.strip!
+        items[item_code] = 0 if items[item_code].blank?
+        items[item_code] += 1
+      end
+
+      total = CheckoutTotal.new(items).execute
     end
 
     render json: { total: total }
