@@ -11,6 +11,12 @@ class CheckoutTotal
       if item.present?
         total += item.price * qty
         # calculate discount if any
+        discount = 0
+        item.discounts.each do |d|
+          discount += d.apply(qty)
+        end
+
+        total -= discount
       end
     end
 
