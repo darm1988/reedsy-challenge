@@ -12,6 +12,16 @@ class ItemsController < ApplicationController
     render json: @item
   end
 
+  def checkout
+    list = params[:items]&.split(',')
+    total = 0
+
+    if list.present?
+    end
+
+    render json: { total: total }
+  end
+
   private
 
   def find_item
