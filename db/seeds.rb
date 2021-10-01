@@ -21,7 +21,7 @@ mug.discounts.create(expression: mug_discount)
 # 30% on all tshirts
 tshirt_discount = Base64.encode64('
   lambda { |item_number, item_price|
-  (item_number >= 3 ? (item_number * item_price * 0.3) : 0)
+    (item_number >= 3 ? (item_number * item_price * 0.3) : 0)
   }
 ')
 tshirt.discounts.create(expression: tshirt_discount)
